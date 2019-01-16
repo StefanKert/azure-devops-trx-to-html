@@ -1,0 +1,49 @@
+{
+  "id": "e5402678-a40e-41dd-8c9a-0e182617fd58",
+  "name": "trx2htmlconverter",
+  "friendlyName": "Trx-2-Html Converter",
+  "description": "Buildtask for converting .trx files to a readable .html",
+  "category": "Utility",
+  "author": "Stefan Kert",
+  "version": {
+    "Major": 0,
+    "Minor": 1,
+    "Patch": 0
+  },
+  "instanceNameFormat": "Convert .trx to html file",
+  "inputs": [
+    {
+      "name": "templateFilePath",
+      "type": "filePath",
+      "label": "Path to mustache template",
+      "defaultValue": "",
+      "required": true
+    },
+    {
+      "name": "outputFilePath",
+      "type": "filePath",
+      "label": "Filepath where to store the result for the export",
+      "defaultValue": "$(Build.ArtifactsStagingDirectory)/report.html",
+      "required": true
+    },
+    {
+      "name": "reportVersion",
+      "type": "filePath",
+      "label": "The version shown on the exported html",
+      "defaultValue": "$(Build.BuildNumber)",
+      "required": true
+    },
+    {
+      "name": "testRunTitle",
+      "type": "string",
+      "label": "The version shown on the exported html",
+      "required": false
+    }
+  ],
+  "execution": {
+    "Node": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  }
+}

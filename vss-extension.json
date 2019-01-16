@@ -1,0 +1,41 @@
+{
+    "manifestVersion": 1,
+    "id": "trxtohtmlconverter",
+    "name": "Trx-2-Html Converter",
+    "version": "0.0.8",
+    "description": "Buildtask for converting .trx files to a readable .html",
+    "publisher": "Stefan Kert",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "galleryFlags": [],
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/extension-icon.png"
+    },
+    "files": [
+        {
+            "path": "task"
+        },
+        {
+            "path": "node_modules",
+            "addressable": true
+        }
+    ],
+    "contributions": [
+        {
+            "id": "custom-build-release-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "task"
+            }
+        }
+    ]
+}

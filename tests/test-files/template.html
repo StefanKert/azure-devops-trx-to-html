@@ -1,0 +1,381 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI VSS (Regular)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        color: #000;
+        font-size: 14px;
+        font-weight: 400;
+        background-color: #fff;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+      }
+
+      .test-results-summary-view .test-summary-view {
+        min-width: 980px;
+      }
+
+      .test-results-summary-view .test-summary-view .summary-view-parent {
+        display: flex;
+      }
+
+      .test-results-summary-view
+        .test-summary-view
+        .summary-view-parent
+        .summary-view-container {
+        flex-grow: 1;
+      }
+
+      .test-results-summary-view .test-summary-view .summary-view-body {
+        height: 130px;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+      }
+
+      .testresults-number-chart .chart-value {
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 42px;
+        height: 48px;
+        white-space: nowrap;
+      }
+
+      .test-results-summary-view
+        .test-summary-view
+        .summary-view-totaltests-chart,
+      .test-results-summary-view
+        .test-summary-view
+        .summary-view-failedtests-chart,
+      .test-results-summary-view
+        .test-summary-view
+        .summary-view-abortedtests-chart {
+        margin-left: 13px;
+        display: flex;
+        align-items: center;
+      }
+
+      .test-results-summary-view .test-summary-view .summary-view-runs-info-bar,
+      .test-results-summary-view .test-summary-view .aborted-view-bar,
+      .test-results-summary-view .test-summary-view .summary-view-bar-right {
+        min-height: 35px;
+        max-height: 35px;
+        background-color: #ebebeb;
+        color: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+      }
+
+      .testresults-number-chart {
+        margin-left: 39px;
+        color: rgba(0, 0, 0, 0.55);
+      }
+
+      .test-results-summary-view .test-summary-view .separator {
+        width: 1px;
+        height: 64px;
+        background-color: #c8c8c8;
+        margin-left: 42px;
+      }
+
+      .test-results-summary-view
+        .test-summary-view
+        .summary-view-runs-info-bar
+        .summary-view-completed-runs {
+        margin-left: 60px;
+        font-weight: 600;
+      }
+
+      .legend-container {
+        margin-left: 13px;
+        display: flex;
+      }
+
+      .testresults-number-chart .chart-value {
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 42px;
+        height: 48px;
+        white-space: nowrap;
+      }
+
+      .testresults-number-chart .chart-title {
+        white-space: nowrap;
+      }
+
+      .testresults-number-chart .chart-difference-show-height {
+        height: 24px;
+      }
+
+      .testresults-number-chart .chart-difference {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+      }
+
+      .legend-container .legend-cell {
+        margin-top: 5px;
+        height: 21px;
+      }
+
+      .legend-container .legend-circle {
+        vertical-align: middle;
+      }
+
+      .legend-container .data-color {
+        margin-left: 12px;
+      }
+
+      .legend-container .data-value {
+        margin-left: 5px;
+        white-space: nowrap;
+      }
+
+      .test-results-report {
+        height: 100%;
+        width: 100%;
+        display: inline-flex;
+        flex-direction: column;
+      }
+
+      .test-results {
+        overflow: auto;
+        flex-grow: 1;
+      }
+
+      .test-results .header {
+        min-height: 34px;
+        display: inline-block;
+        background: #ffffff;
+        position: relative;
+        min-width: 100%;
+        vertical-align: top;
+        height: 32px;
+        line-height: 32px;
+        white-space: nowrap;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        padding-bottom: 1px;
+        border-bottom: 1px solid #ebebeb;
+        cursor: default;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .test-results .test-results-separator {
+        border-bottom: 1px solid #ebebeb;
+      }
+
+      .test-results .testresults-column-header {
+        font-size: 11px;
+        color: rgba(0, 0, 0, 0.55);
+        font-weight: 400;
+        color: #333333;
+        position: relative;
+        display: inline-block;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 8px;
+        border: none;
+        line-height: inherit;
+        margin: 0;
+        height: 32px;
+        vertical-align: top;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .test-results .test-result {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        margin: 0;
+        padding: 0 8px;
+        align-items: center;
+        line-height: 34px;
+        min-height: 34px;
+        color: rgba(0, 0, 0, 0.9);
+        background-color: #ffffff;
+      }
+
+      .test-results .test-result:hover {
+        background-color: rgb(244, 244, 244);
+      }
+
+      .test-results-grid .test-results-cell {
+        display: flex;
+        align-items: center;
+      }
+
+      .icon-body {
+        width: 32px;
+        height: 32px;
+        display: block;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+      }
+
+      .icon-content {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 29;
+        stroke-dashoffset: 29;
+        stroke-dashoffset: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="test-results-report">
+      <div>
+        <h1>Test Report - {{ TestRunIds }} - {{ ReportVersion }}</h1>
+      </div>
+      <div class="test-results-summary-view">
+        <div class="test-summary-view">
+          <div class="content-container">
+            <div>
+              <div class="summary-view-parent">
+                <div class="summary-view-container">
+                  <div class="summary-view-runs-info-bar">
+                    <div class="summary-view-completed-runs">
+                      {{ Runs }} Run(s) Completed ({{ PassedAmount }} Passed,
+                      {{ FailedAmount }} Failed)
+                    </div>
+                  </div>
+                  <div class="summary-view-body">
+                    <div class="testresults-number-chart">
+                      <div class="chart-value">
+                        {{ TotalAmount }}
+                      </div>
+                      <div class="chart-title">Total tests</div>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="summary-view-totaltests-chart">
+                      <div class="legend-container">
+                        <div>
+                          <div class="legend-cell data-count">
+                            {{ PassedAmount }}
+                          </div>
+                          <div class="legend-cell data-count">
+                            {{ FailedAmount }}
+                          </div>
+                        </div>
+                        <div>
+                          <div class="legend-cell data-color">
+                            <span class="legend-circle">
+                              <svg width="14px" height="14px">
+                                <circle
+                                  class="color-circle"
+                                  cx="7"
+                                  cy="7"
+                                  r="7"
+                                  fill="#107C10"
+                                ></circle>
+                              </svg>
+                            </span>
+                          </div>
+                          <div class="legend-cell data-color">
+                            <span class="legend-circle">
+                              <svg width="14px" height="14px">
+                                <circle
+                                  class="color-circle"
+                                  cx="7"
+                                  cy="7"
+                                  r="7"
+                                  fill="#DA0A00"
+                                ></circle>
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="legend-cell data-value">Passed</div>
+                          <div class="legend-cell data-value">Failed</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="testresults-number-chart">
+                      <div class="chart-value">
+                        <div>
+                          <span class="number-chart-large-font">{{
+                            PassPercentage
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="chart-title">Pass percentage</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-results">
+        <div class="test-results-separator"></div>
+        <div class="header">
+          <div class="testresults-column-header" style="width: 100%;">
+            <span> Test </span>
+          </div>
+        </div>
+        <div class="test-results-grid">
+          {{#TestResults}}
+          <div class="test-result" style="min-width: 500px;">
+            <div
+              class="testresults-column-cell testresults-test"
+              style="width: 100%;"
+            >
+              <div class="test-results-cell" style="padding-left: 50px;">
+                {{#Passed}}
+                    <svg
+                    class="icon-body"
+                    style="width:42px; height:42px;"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 52 52"
+                    >
+                    <path
+                        class="icon-content"
+                        style="stroke: green;"
+                        fill="none"
+                        d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                    />
+                    </svg>
+                {{/Passed}} 
+                {{^Passed}}
+                    <svg
+                    class="icon-body"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 52 52"
+                    >
+                    <path
+                        class="icon-content"
+                        style="stroke: red"
+                        d="M16 16 36 36 M36 16 16 36"
+                    />
+                    </svg>
+                {{/Passed}}
+                <span class="test-results-test-name">
+                  {{ TestName }} ({{ ComputerName }})
+                </span>
+              </div>
+            </div>
+          </div>
+          {{/TestResults}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

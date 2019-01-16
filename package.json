@@ -1,0 +1,35 @@
+{
+  "name": "task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "azure-devops-node-api": "^7.0.0",
+    "azure-pipelines-task-lib": "^2.7.7",
+    "mustache": "^3.0.1",
+    "natives": "^1.1.6",
+    "xml-js": "^1.6.9",
+    "xml-parser": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.10",
+    "@types/q": "^1.5.1",
+    "@types/xml-parser": "^1.2.29",
+    "typescript": "^3.2.1",
+    "tfx-cli": "^0.6.3",
+    "gulp": "^3.9.1",
+    "gulp-debug": "^3.0.0",
+    "gulp-typescript": "^4.0.2",
+    "merge-stream": "^1.0.1",
+    "del": "^2.2.2"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "postbuild": "npm run package",
+    "package": "tfx extension create --rev-version --root _build --output-path _packages",
+    "test": "tsc -p . && mocha .\\tests\\_suite.js"
+  },
+  "author": "",
+  "license": "MIT"
+}
